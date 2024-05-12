@@ -16,7 +16,6 @@ const PublicationSchema = mongoose.Schema({
     autor: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
-        required: true
     },
     comentarios: {
         type: [{

@@ -13,7 +13,9 @@ export const addPublication = async (req, res) => {
             });
         }
 
-        const publication = new Publication({ titulo, contenido, fechaPublicacion, descripcion, img });
+        const { uid } = req.user;
+
+        const publication = new Publication({ titulo, contenido, fechaPublicacion, autor: uid, descripcion, img });
 
         await publication.save();
 
@@ -90,7 +92,7 @@ export const publicationDelete = async (req, res) => {
     }
 };
 
-export const getPublication = async (req,res) => {
+export const getPublication = async (req, res) => {
     try {
         const publication = await Publication.find({ activityStatus: { $ne: false } });
 

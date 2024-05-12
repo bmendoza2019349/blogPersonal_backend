@@ -4,12 +4,12 @@ import { generarJWT } from '../helpers/generate-JWT.js';
 
 export const login = async (req, res) => {
     const { usuario, password } = req.body;
-
+    let user;
     try {
         // Verificar si es email o  name, y si  existe
         const isEmail = usuario.includes('@');
 
-        let user;
+        
 
         if (isEmail) {
             user = await User.findOne({ email: usuario });
@@ -41,7 +41,7 @@ export const login = async (req, res) => {
         }
 
         // Generar el JWT de forma segura
-        const token = await generarJWT(user.uid, user.email, user.role);
+        const token = await generarJWT(user._id, user.email, user.role);
 
 
 

@@ -1,2 +1,0 @@
-# blogPersonal_backend
-blog

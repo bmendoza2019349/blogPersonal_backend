@@ -6,7 +6,7 @@ import UserModel from './user.model.js';
 
 async function connectToMongo() {
     try {
-        await mongoose.connect(process.env.URI_MONGO || 'mongodb://localhost:27017/ProyectoFinalBim2', {
+        await mongoose.connect(process.env.URI_MONGO || 'mongodb://localhost:27017/MyBlog', {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });
@@ -40,7 +40,7 @@ async function addUser(user) {
 
             console.log(`Added user: ${user.email}`);
         } else {
-
+            console.log(`exists user: ${user.email}`);
         }
     } catch (error) {
         console.error(`Error adding user with email ${user.email}:`, error.message);

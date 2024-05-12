@@ -1,6 +1,6 @@
 import { response, request } from "express";
 import bcryptjs from 'bcryptjs';
-import User from '../user/user.model.js';
+import User from './user.model.js';
 
 export const register = async (req, res) => {
     try {
@@ -42,7 +42,7 @@ export const updateUser = async (req, res = response) => {
     const user = await User.findOne({ _id: id });
 
     res.status(200).json({
-        msg: 'User update successfully',
+        msg: 'User uodate successfully',
         user,
     });
 }
@@ -53,7 +53,7 @@ export const userDelete = async (req, res) => {
         const { id } = req.params;
 
         // Desactiva el usuario en lugar de borrarlo permanentemente
-        const user = await User.findByIdAndUpdate(id, { estado: false });
+        const user = await User.findByIdAndUpdate(id, { state: false });
 
         res.status(200).json({ msg: 'The user desactived susccessfully', user });
 

@@ -1,5 +1,5 @@
 import bcryptjs from 'bcryptjs';
-import User from '../user/user.model.js';
+import User from '../users/user.model.js';
 import { generarJWT } from '../helpers/generate-JWT.js';
 
 export const login = async (req, res) => {
@@ -14,7 +14,7 @@ export const login = async (req, res) => {
         if (isEmail) {
             user = await User.findOne({ email: usuario });
         } else {
-            user = await User.findOne({username: usuario})
+            user = await User.findOne({ username: usuario })
         }
 
 
@@ -41,11 +41,12 @@ export const login = async (req, res) => {
         }
 
         // Generar el JWT de forma segura
-        const token = await generarJWT(user.id);
+        const token = await generarJWT(user.uid, user.email, user.role);
+
 
 
         res.status(200).json({
-            msg: `Welcome ${user.role} ${user.name}`,
+            msg: `Welcome ${user.role} ${user.username}`,
             token,
         });
     } catch (error) {

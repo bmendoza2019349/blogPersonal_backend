@@ -1,9 +1,17 @@
 import { Router } from "express";
 import { check } from "express-validator";
-import { addPublication, getPublication, publicationDelete, updatePublication,  } from "./publication.controller.js";
+import {
+    addPublication,
+    getPublication,
+    publicationDelete,
+    updatePublication,
+    addComment,
+    editComment, 
+    deleteComment,
+    listComments
+} from "./publication.controller.js";
 import { validarCampos } from "../middlewares/validar-campos.js";
 import { validarJWT } from "../middlewares/validar-jwt.js";
-import { validarCreador } from "../middlewares/validar-publication.js";
 
 const router = Router();
 
@@ -13,32 +21,68 @@ router.post(
         validarJWT,
         check('titulo', 'El titulo es obligatorio').not().isEmpty(),
         check('descripcion', 'La descripcion es obligatorio').not().isEmpty(),
-        check('fechaPublicacion', 'La fechaPublicacion es obligatorio').not().isEmpty(),
         validarCampos
     ], addPublication);
 
-    router.put(
-        "/editarPubli/:id",
-        [
-            validarCreador,
-            check("id", "Id no valido").isMongoId(),
-            validarCampos,
-        ], 
-        updatePublication
-    );
+router.put(
+    "/editarPubli/:id",
+    [
+        validarJWT,
+        check("id", "Id no valido").isMongoId(),
+        validarCampos,
+    ],
+    updatePublication
+);
 
-    router.get(
-        "/listarPubli",
-        [
-        ],getPublication
-    );
-    
+router.get(
+    "/listarPubli",
+    [
+    ], getPublication
+);
 
-    router.delete(
-        "/eliminarPubli/:id",
-        [
-            validarCreador,
-            check('id', 'El id es obligatorio').not().isEmpty(),
-        ],publicationDelete);
+
+router.delete(
+    "/eliminarPubli/:id",
+    [
+        validarJWT,
+        check('id', 'El id es obligatorio').not().isEmpty(),
+        validarCampos,
+    ], publicationDelete);
+
+router.post(
+    "/comments/:id",
+    [
+        validarJWT, // Verificar token JWT para autenticación
+        check('texto', 'El texto del comentario es obligatorio').not().isEmpty(),
+        validarCampos // Validar campos
+    ],
+    addComment
+);
+
+// Editar comentario en una publicación
+router.put(
+    "/pub/:id/comupdate/:commentId",
+    [
+        validarJWT, // Verificar token JWT para autenticación
+        check('texto', 'El texto del comentario es obligatorio').not().isEmpty(),
+        validarCampos // Validar campos
+    ],
+    editComment
+);
+
+// Eliminar comentario de una publicación
+router.delete(
+    "/pub/:id/comdelete/:commentId",
+    [
+        validarJWT // Verificar token JWT para autenticación
+    ],
+    deleteComment
+);
+
+router.get(
+    "/commentspublic/:id",
+    [],
+    listComments
+);
 
 export default router;

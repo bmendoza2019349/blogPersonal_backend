@@ -28,6 +28,12 @@ export const register = async (req, res) => {
 
 export const updateUser = async (req, res = response) => {
     const { id } = req.params;
+
+    // Verificar si el usuario está autenticado y si es el mismo que el usuario que se está intentando actualizar
+    if (!req.user || req.user.uid !== id) {
+        return res.status(403).json({ msg: "You are not authorized to update this user" });
+    }
+
     const { _id, password, email, ...rest } = req.body;
 
     if (password) {
@@ -42,23 +48,27 @@ export const updateUser = async (req, res = response) => {
     const user = await User.findOne({ _id: id });
 
     res.status(200).json({
-        msg: 'User uodate successfully',
+        msg: 'User update successfully',
         user,
     });
 }
-
 
 export const userDelete = async (req, res) => {
     try {
         const { id } = req.params;
 
-        // Desactiva el usuario en lugar de borrarlo permanentemente
+        // Verificar si el usuario autenticado es el mismo que el usuario que se está intentando eliminar
+        if (!req.user || req.user.uid !== id) {
+            return res.status(403).json({ msg: "You are not authorized to delete this user" });
+        }
+
+        // Desactivar el usuario en lugar de borrarlo permanentemente
         const user = await User.findByIdAndUpdate(id, { state: false });
 
-        res.status(200).json({ msg: 'The user desactived susccessfully', user });
+        res.status(200).json({ msg: 'The user and associated publications have been successfully deactivated', user });
 
     } catch (error) {
         console.log(error);
-        return res.status(500).json({ msg: 'Contacta al ADMINISTRATOR' });
+        return res.status(500).json({ msg: 'Contact the administrator' });
     }
 };

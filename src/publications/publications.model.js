@@ -1,5 +1,19 @@
 import mongoose from "mongoose";
 
+const ComentarioSchema = mongoose.Schema({
+    usuario: {
+        type: String, // Podría ser ObjectId si quieres referenciar el usuario en la base de datos
+        required: true
+    },
+    fechaHora: {
+        type: String,
+    },
+    texto: {
+        type: String,
+        required: true
+    }
+});
+
 const PublicationSchema = mongoose.Schema({
     titulo: {
         type: String
@@ -14,18 +28,13 @@ const PublicationSchema = mongoose.Schema({
         type: String
     },
     autor: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+        type: String
     },
-    comentarios: {
-        type: [{
-            type: String
-        }]
-    },
+    comentarios: [ComentarioSchema], // Cambiado para que los comentarios sean objetos con las propiedades adecuadas
     state: {
         type: Boolean,
         default: true,
     }
-})
+});
 
-export default mongoose.model('Publication', PublicationSchema)
+export default mongoose.model('Publication', PublicationSchema);

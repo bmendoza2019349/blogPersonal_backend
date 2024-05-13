@@ -1,0 +1,162 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "PublicationBlog",
+    "collectionId": "5daccdd4-5661-4f2b-87bf-8ecbcca7e71e",
+    "dateExported": "2024-05-13T01:23:40.413Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "294c6e00-6952-44ca-9de2-f1886fbffd48",
+            "colId": "5daccdd4-5661-4f2b-87bf-8ecbcca7e71e",
+            "containerId": "",
+            "name": "ADDPublication",
+            "url": "http://127.0.0.1:8080/blogSystem/v1/public/agregarPubli",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-05-12T07:48:17.331Z",
+            "modified": "2024-05-12T22:59:42.005Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NjQxNDJkNmMyMGExODRmYTc1MGI4ZTkiLCJlbWFpbCI6InN0ZXZAa2luYWwuZWR1Iiwicm9sZSI6IkFETUlOSVNUUkFET1IiLCJpYXQiOjE3MTU1NTQ2MDMsImV4cCI6MTcxNTU4MzQwM30.59t91pQQmewoWKdPLzCmNga9b8tFJ7hdp9Y0pfpUJPQ"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"titulo\":\"probando\", \n  \"descripcion\":\"realizando pruebas\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "dda20165-cd55-4c75-80c3-544688d2bc15",
+            "colId": "5daccdd4-5661-4f2b-87bf-8ecbcca7e71e",
+            "containerId": "",
+            "name": "Editar Publicacion",
+            "url": "http://127.0.0.1:8080/blogSystem/v1/public/editarPubli/66415199b9718a417e7df1b0",
+            "method": "PUT",
+            "sortNum": 20000,
+            "created": "2024-05-12T22:23:34.210Z",
+            "modified": "2024-05-12T23:33:08.294Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NjQxNDJkNmMyMGExODRmYTc1MGI4ZTkiLCJlbWFpbCI6InN0ZXZAa2luYWwuZWR1Iiwicm9sZSI6IkFETUlOSVNUUkFET1IiLCJpYXQiOjE3MTU1NTQ2MDMsImV4cCI6MTcxNTU4MzQwM30.59t91pQQmewoWKdPLzCmNga9b8tFJ7hdp9Y0pfpUJPQ"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"titulo\":\"prueba y error\" \n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "fe19531c-4a87-4b6d-9c28-19e44a12a0d7",
+            "colId": "5daccdd4-5661-4f2b-87bf-8ecbcca7e71e",
+            "containerId": "",
+            "name": "Eliminar Publicacion",
+            "url": "http://127.0.0.1:8080/blogSystem/v1/public/eliminarPubli/66415199b9718a417e7df1b0",
+            "method": "DELETE",
+            "sortNum": 30000,
+            "created": "2024-05-12T23:36:10.981Z",
+            "modified": "2024-05-12T23:41:44.044Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NjQxNDJkNmMyMGExODRmYTc1MGI4ZTkiLCJlbWFpbCI6InN0ZXZAa2luYWwuZWR1Iiwicm9sZSI6IkFETUlOSVNUUkFET1IiLCJpYXQiOjE3MTU1NTQ2MDMsImV4cCI6MTcxNTU4MzQwM30.59t91pQQmewoWKdPLzCmNga9b8tFJ7hdp9Y0pfpUJPQ"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"titulo\":\"prueba y error\" \n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "ab8f9d3e-892c-4e3d-aef9-63417db36b85",
+            "colId": "5daccdd4-5661-4f2b-87bf-8ecbcca7e71e",
+            "containerId": "",
+            "name": "Ver Publicaciones",
+            "url": "http://127.0.0.1:8080/blogSystem/v1/public/listarPubli",
+            "method": "GET",
+            "sortNum": 40000,
+            "created": "2024-05-12T22:23:37.905Z",
+            "modified": "2024-05-12T23:48:45.393Z",
+            "headers": []
+        },
+        {
+            "_id": "5600ab79-9ea0-461f-8e49-ade8dbe1acb7",
+            "colId": "5daccdd4-5661-4f2b-87bf-8ecbcca7e71e",
+            "containerId": "",
+            "name": "agregar Comentario",
+            "url": "http://127.0.0.1:8080/blogSystem/v1/public/comments/66414ced8334fabb0e5ef837",
+            "method": "POST",
+            "sortNum": 50000,
+            "created": "2024-05-12T22:23:41.191Z",
+            "modified": "2024-05-13T00:00:58.928Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NjQxNDJkNmMyMGExODRmYTc1MGI4ZTkiLCJlbWFpbCI6InN0ZXZAa2luYWwuZWR1Iiwicm9sZSI6IkFETUlOSVNUUkFET1IiLCJpYXQiOjE3MTU1NTQ2MDMsImV4cCI6MTcxNTU4MzQwM30.59t91pQQmewoWKdPLzCmNga9b8tFJ7hdp9Y0pfpUJPQ"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"texto\":\"esdta funcionando\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "9f3c09f8-584e-4bfb-aafc-b1ec0538254d",
+            "colId": "5daccdd4-5661-4f2b-87bf-8ecbcca7e71e",
+            "containerId": "",
+            "name": "Eliminar Comentario",
+            "url": "http://127.0.0.1:8080/blogSystem/v1/public/pub/66414ced8334fabb0e5ef837/comdelete/66415938c59a7c3daddc6517",
+            "method": "DELETE",
+            "sortNum": 60000,
+            "created": "2024-05-12T22:23:46.398Z",
+            "modified": "2024-05-13T00:44:56.831Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NjQxNDJkNmMyMGExODRmYTc1MGI4ZTkiLCJlbWFpbCI6InN0ZXZAa2luYWwuZWR1Iiwicm9sZSI6IkFETUlOSVNUUkFET1IiLCJpYXQiOjE3MTU1NTQ2MDMsImV4cCI6MTcxNTU4MzQwM30.59t91pQQmewoWKdPLzCmNga9b8tFJ7hdp9Y0pfpUJPQ"
+                }
+            ]
+        },
+        {
+            "_id": "847c5f94-332d-4327-b336-79ec35f7c5ca",
+            "colId": "5daccdd4-5661-4f2b-87bf-8ecbcca7e71e",
+            "containerId": "",
+            "name": "Editar Comentario",
+            "url": "http://127.0.0.1:8080/blogSystem/v1/public/pub/66414ced8334fabb0e5ef837/comupdate/6641597180e658a961f23abb",
+            "method": "PUT",
+            "sortNum": 70000,
+            "created": "2024-05-12T22:23:49.118Z",
+            "modified": "2024-05-13T00:48:49.302Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NjQxNDJkNmMyMGExODRmYTc1MGI4ZTkiLCJlbWFpbCI6InN0ZXZAa2luYWwuZWR1Iiwicm9sZSI6IkFETUlOSVNUUkFET1IiLCJpYXQiOjE3MTU1NTQ2MDMsImV4cCI6MTcxNTU4MzQwM30.59t91pQQmewoWKdPLzCmNga9b8tFJ7hdp9Y0pfpUJPQ"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"texto\":\"dfgdfdgdfgdfgfdgdfgddfgdfgdfg\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "6b2f2c25-179f-4605-ba4d-f5a433f6887e",
+            "colId": "5daccdd4-5661-4f2b-87bf-8ecbcca7e71e",
+            "containerId": "",
+            "name": "Ver Comentario",
+            "url": "http://127.0.0.1:8080/blogSystem/v1/public/commentspublic/66414ced8334fabb0e5ef837",
+            "method": "GET",
+            "sortNum": 80000,
+            "created": "2024-05-12T22:23:55.351Z",
+            "modified": "2024-05-13T00:21:44.612Z",
+            "headers": []
+        }
+    ],
+    "ref": "vfxqCP_flBu_nTDX68zyxQwMr6fZ12XWKPzNXLNjKhW7sUMvNGS5CGBwNQMsBoDUEf8PQz39Y97FVo8PmPqBew"
+}

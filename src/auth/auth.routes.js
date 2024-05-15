@@ -10,7 +10,7 @@ const router = Router();
 router.post(
     '/login',
     [
-        check('usuario', 'El usuario o correo es obligatorio').not().isEmpty(),
+
         // Validar que el campo 'password' no esté vacío
         check('password', 'El password es obligatorio').not().isEmpty(),
         // Ejecutar el middleware de validación de campos

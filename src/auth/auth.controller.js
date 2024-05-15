@@ -3,53 +3,37 @@ import User from '../users/user.model.js';
 import { generarJWT } from '../helpers/generate-JWT.js';
 
 export const login = async (req, res) => {
-    const { usuario, password } = req.body;
-    let user;
+    const { email, password } = req.body;
+  
     try {
-        // Verificar si es email o  name, y si  existe
-        const isEmail = usuario.includes('@');
-
-        
-
-        if (isEmail) {
-            user = await User.findOne({ email: usuario });
-        } else {
-            user = await User.findOne({ username: usuario })
-        }
-
-
-        if (!user) {
-            return res.status(400).json({
-                msg: "Incorrect credentials, email does not exist in the database.",
-            });
-        }
-
-        // Verificar si el usuario está activo
-        if (!user.state) {
-            return res.status(400).json({
-                msg: "The user is not active in the database.",
-            });
-        }
-
-        // Verificar la contraseña de manera segura utilizando bcrypt
-        const validPassword = await bcryptjs.compare(password, user.password);
-
-        if (!validPassword) {
-            return res.status(400).json({
-                msg: "Password is incorrect.",
-            });
-        }
-
-        // Generar el JWT de forma segura
-        const token = await generarJWT(user._id, user.email, user.role);
-
-
-
+      //verificar si el email existe:
+      const user = await User.findOne({ email });
+  
+      if(user && (await bcryptjs.compare(password, user.password))){
+        const token = await generarJWT(user.id, user.email, user.role)
+  
         res.status(200).json({
-            msg: `Welcome ${user.role} ${user.username}`,
-            token,
+          msg: "Login Ok!!!",
+          userDetails: {
+            username: user.username,
+            token: token
+          },
         });
-    } catch (error) {
-        res.status(500).send("Comuniquese con el administrador");
+      }
+  
+      if (!user) {
+        return res
+          .status(400)
+          .send(`Wrong credentials, ${email} doesn't exists en database`);
+      }
+  
+      // verificar la contraseña
+      const validPassword = bcryptjs.compareSync(password, user.password);
+      if (!validPassword) {
+        return res.status(400).send("wrong password");
+      }
+     
+    } catch (e) {
+      res.status(500).send("Comuniquese con el administrador");
     }
-}
+  };

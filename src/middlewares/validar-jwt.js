@@ -11,14 +11,6 @@ export const validarJWT = (req, res, next) => {
         token = token.replace(/^Bearer\s+/, '')
         const decoded = jwt.verify(token, process.env.TOKEN_KEY)
 
-        // Verificar si el campo role está presente en el objeto decoded
-        if (!decoded.role) {
-            return res.status(403).json({
-                error: 'Forbidden',
-                msg: 'Role not found in token'
-            });
-        }
-
         req.user = decoded
     }catch(e){
         console.log(e)

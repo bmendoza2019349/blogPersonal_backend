@@ -308,3 +308,20 @@ export const getPublication = async (req, res) => {
         return res.status(500).send("Error al obtener las publication");
     }
 }
+
+export const getPublicById = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const publicacion = await Publication.findOne({ _id: id });
+
+        if (!publicacion) {
+            return res.status(404).json({ error: 'Publicación no encontrada' });
+        }
+
+        res.status(200).json({
+            publicacion
+        });
+    } catch (error) {
+        res.status(500).json({ error: 'Error al buscar la publicación' });
+    }
+};

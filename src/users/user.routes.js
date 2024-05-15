@@ -11,11 +11,7 @@ router.post(
   [
     check("email", "Este no es un correo válido").isEmail(),
     check("username", "El username es obligatorio").not().isEmpty(),
-    check("age", "El age  es obligatorio").not().isEmpty(),
-    check("sex", "El sex es obligatorio").not().isEmpty(),
-    check("birthdate", "El birthdate es obligatorio").not().isEmpty(),
     check("password", "El password debe ser mayor a 4 caracteres").isLength({min: 4,}),
-    check("phone","El teléfono debe de contener 8 números").isLength({min: 8, max:8}),
     validarCampos,
   ],
   register

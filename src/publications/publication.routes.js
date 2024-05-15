@@ -8,7 +8,8 @@ import {
     addComment,
     editComment, 
     deleteComment,
-    listComments
+    listComments,
+    getPublicById
 } from "./publication.controller.js";
 import { validarCampos } from "../middlewares/validar-campos.js";
 import { validarJWT } from "../middlewares/validar-jwt.js";
@@ -16,7 +17,7 @@ import { validarJWT } from "../middlewares/validar-jwt.js";
 const router = Router();
 
 router.post(
-    "/agregarPubli",
+    "/",
     [
         validarJWT,
         check('titulo', 'El titulo es obligatorio').not().isEmpty(),
@@ -25,7 +26,7 @@ router.post(
     ], addPublication);
 
 router.put(
-    "/editarPubli/:id",
+    "/:id",
     [
         validarJWT,
         check("id", "Id no valido").isMongoId(),
@@ -35,14 +36,14 @@ router.put(
 );
 
 router.get(
-    "/listarPubli",
+    "/",
     [
     ], getPublication
 );
 
 
 router.delete(
-    "/eliminarPubli/:id",
+    "/:id",
     [
         validarJWT,
         check('id', 'El id es obligatorio').not().isEmpty(),
@@ -84,5 +85,11 @@ router.get(
     [],
     listComments
 );
+
+router.get(
+    "/:id",
+    [check('id', 'El id es obligatorio').not().isEmpty(),],
+    getPublicById
+)
 
 export default router;

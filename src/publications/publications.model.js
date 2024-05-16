@@ -24,6 +24,9 @@ const PublicationSchema = mongoose.Schema({
     img: {
         type: String
     },
+    materia: {
+        type: String
+    },
     fechaPublicacion: {
         type: String
     },

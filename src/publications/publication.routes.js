@@ -51,7 +51,7 @@ router.delete(
     ], publicationDelete);
 
 router.post(
-    "/comments/:id",
+    "/:id/comments",
     [
         validarJWT, // Verificar token JWT para autenticación
         check('texto', 'El texto del comentario es obligatorio').not().isEmpty(),
@@ -81,7 +81,7 @@ router.delete(
 );
 
 router.get(
-    "/commentspublic/:id",
+    "/public/:id",
     [],
     listComments
 );

@@ -4,14 +4,14 @@ import User from "../users/user.model.js";
 
 export const addPublication = async (req, res) => {
     try {
-        const { titulo, contenido, descripcion, img } = req.body;
+        const { titulo, contenido, descripcion, img, materia } = req.body;
 
         // Verificar el rol del usuario
         if (req.user.role !== 'ADMINISTRADOR') {
-            return res.status(403).json({
-                error: 'Forbidden',
-                msg: 'Only administrators can create publications'
-            });
+            return res
+            .status(403)
+            .send(`Solo el administrador puede crear una publicacion`);
+            
         }
 
         const { uid } = req.user;
@@ -29,21 +29,21 @@ export const addPublication = async (req, res) => {
         const seconds = currentDate.getSeconds().toString().padStart(2, '0');
         const fechaPublicacion = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 
-        const publication = new Publication({ titulo, contenido, fechaPublicacion, autor: autorEmail, descripcion, img });
+        const publication = new Publication({ titulo, contenido, fechaPublicacion, autor: autorEmail, descripcion, img, materia });
 
         await publication.save();
 
-        res.status(200).json({
-            msg: "The publication was added successfully",
-            publication
-        });
+        return res
+        .status(200)
+        .send(`publicacion creada exitosamente`);
+
     } catch (error) {
         console.log(error);
-        res.status(409).json({
-            error: error.message,
-            msg: "Contact the administrator",
-        });
+        return res
+        .status(403)
+        .send(`contacta al administrador`);
     }
+
 };
 
 // Agregar comentario a una publicación
@@ -51,7 +51,7 @@ export const addComment = async (req, res) => {
     try {
         const { texto } = req.body; // Se espera que el cliente envíe el usuario y el texto del comentario en el cuerpo de la solicitud
         const { id } = req.params;
-
+        console.log(id)
         const { uid } = req.user;
         // Obtener el email del autor
         const user = await User.findById(uid);

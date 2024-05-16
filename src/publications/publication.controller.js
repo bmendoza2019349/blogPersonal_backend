@@ -309,6 +309,24 @@ export const getPublication = async (req, res) => {
     }
 }
 
+export const getPublicacionSetting = async(req,res) => {
+    try {
+        const {id} = req.params;
+        const publicacionData = await Publication.findById(id)
+
+        return res.status(200).json({
+            id: publicacionData._id,
+            img: publicacionData.img,
+            titulo: publicacionData.titulo,
+            descripcion: publicacionData.descripcion,
+            materia: publicacionData.materia
+        })
+    } catch (e) {
+        console.log(e)
+        return res.status(500).send('Something went wrong')
+    }
+}
+
 export const getPublicById = async (req, res) => {
     const { id } = req.params;
     try {

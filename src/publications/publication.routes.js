@@ -9,13 +9,15 @@ import {
     editComment, 
     deleteComment,
     listComments,
-    getPublicById
+    getPublicById,
+    getPublicacionSetting
 } from "./publication.controller.js";
 import { validarCampos } from "../middlewares/validar-campos.js";
 import { validarJWT } from "../middlewares/validar-jwt.js";
 
 const router = Router();
 
+router.get('/:id/updatePu', getPublicacionSetting)
 router.post(
     "/",
     [
@@ -26,7 +28,7 @@ router.post(
     ], addPublication);
 
 router.put(
-    "/:id",
+    "/:id/updatePu",
     [
         validarJWT,
         check("id", "Id no valido").isMongoId(),
@@ -43,7 +45,7 @@ router.get(
 
 
 router.delete(
-    "/:id",
+    "/:id/pubDelete",
     [
         validarJWT,
         check('id', 'El id es obligatorio').not().isEmpty(),
@@ -73,7 +75,7 @@ router.put(
 
 // Eliminar comentario de una publicación
 router.delete(
-    "/pub/:id/comdelete/:commentId",
+    "/:id/comments/:commentId",
     [
         validarJWT // Verificar token JWT para autenticación
     ],

@@ -33,6 +33,9 @@ const PublicationSchema = mongoose.Schema({
     autor: {
         type: String
     },
+    github: {
+        type: String
+    },
     comentarios: [ComentarioSchema], // Cambiado para que los comentarios sean objetos con las propiedades adecuadas
     state: {
         type: Boolean,

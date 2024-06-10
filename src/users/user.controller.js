@@ -41,10 +41,8 @@ export const updateUser = async (req, res = response) => {
         rest.password = bcryptjs.hashSync(password, salt);
     }
 
-    // Actualiza el usuario en la base de datos
     await User.findByIdAndUpdate(id, rest);
 
-    // Obtiene el usuario actualizado
     const user = await User.findOne({ _id: id });
 
     res.status(200).json({

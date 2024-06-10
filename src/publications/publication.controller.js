@@ -4,7 +4,7 @@ import User from "../users/user.model.js";
 
 export const addPublication = async (req, res) => {
     try {
-        const { titulo, contenido, descripcion, img, materia } = req.body;
+        const { titulo, contenido, descripcion, img, materia, github } = req.body;
 
         // Verificar el rol del usuario
         if (req.user.role !== 'ADMINISTRADOR') {
@@ -29,7 +29,7 @@ export const addPublication = async (req, res) => {
         const seconds = currentDate.getSeconds().toString().padStart(2, '0');
         const fechaPublicacion = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 
-        const publication = new Publication({ titulo, contenido, fechaPublicacion, autor: autorEmail, descripcion, img, materia });
+        const publication = new Publication({ titulo, contenido, fechaPublicacion, autor: autorEmail, descripcion, img, materia, github });
 
         await publication.save();
 
@@ -319,7 +319,8 @@ export const getPublicacionSetting = async(req,res) => {
             img: publicacionData.img,
             titulo: publicacionData.titulo,
             descripcion: publicacionData.descripcion,
-            materia: publicacionData.materia
+            materia: publicacionData.materia,
+            github: publicacionData.github
         })
     } catch (e) {
         console.log(e)

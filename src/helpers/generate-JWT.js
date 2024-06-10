@@ -7,7 +7,7 @@ export const generarJWT = (uid = '', email = '', role = '') => {
             payload,
             process.env.TOKEN_KEY,
             {
-                expiresIn: '8h'
+                expiresIn: '24h'
             },
             (err, token)=>{
                 err ? (console.log(err),reject('we have a problem to generate the token')) : resolve(token)
